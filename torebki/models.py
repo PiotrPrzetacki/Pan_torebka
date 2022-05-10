@@ -82,7 +82,7 @@ class BagDimensions(models.Model):
     available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.width}x{self.height}x{self.depth}'
+        return f'{self.width}x{self.height}x{self.depth} cm'
 
 
 class HandleType(models.Model):
@@ -99,6 +99,16 @@ class Bag(models.Model):
     printing = models.ForeignKey('Printing', on_delete=models.CASCADE)
     handle_type = models.ForeignKey('HandleType', on_delete=models.CASCADE)
     dimensions = models.ForeignKey('BagDimensions', on_delete=models.CASCADE)
+
+    def is_available(self):
+        for component in [self.paper, self.handle_type, self.dimensions]:
+            if not component.available:
+                return False
+
+        if not self.printing.colors_num.available or not self.printing.overprint.available or not self.printing.laminate.available:
+           return False
+        
+        return True
 
 
 class PricesHistory(models.Model):
