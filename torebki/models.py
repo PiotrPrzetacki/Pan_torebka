@@ -62,16 +62,6 @@ class Colors(models.Model):
     def __str__(self):
         return f'{self.colors_num}'
 
-
-class Printing(models.Model):
-    colors_num = models.ForeignKey('Colors', on_delete=models.CASCADE)
-    overprint = models.ForeignKey('Overprint', on_delete=models.CASCADE)
-    laminate = models.ForeignKey('Laminate', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'Zadruk {self.overprint}, laminat {self.laminate}, kolory: {self.colors_num}'
-
-
 class BagDimensions(models.Model):
     height = models.SmallIntegerField(validators=[MaxValueValidator(100),
                                                   MinValueValidator(5)])
@@ -96,17 +86,19 @@ class HandleType(models.Model):
 
 class Bag(models.Model):
     paper = models.ForeignKey('Paper', on_delete=models.CASCADE)
-    printing = models.ForeignKey('Printing', on_delete=models.CASCADE)
+
+    colors_num = models.ForeignKey('Colors', on_delete=models.CASCADE)
+    overprint = models.ForeignKey('Overprint', on_delete=models.CASCADE)
+    laminate = models.ForeignKey('Laminate', on_delete=models.CASCADE)
+
     handle_type = models.ForeignKey('HandleType', on_delete=models.CASCADE)
     dimensions = models.ForeignKey('BagDimensions', on_delete=models.CASCADE)
 
     def is_available(self):
-        for component in [self.paper, self.handle_type, self.dimensions]:
+        for component in [self.paper, self.handle_type, self.dimensions, self.colors_num,
+                          self.overprint, self.laminate]:
             if not component.available:
                 return False
-
-        if not self.printing.colors_num.available or not self.printing.overprint.available or not self.printing.laminate.available:
-           return False
         
         return True
 
@@ -114,6 +106,6 @@ class Bag(models.Model):
 class PricesHistory(models.Model):
     component_type = models.CharField(max_length=100)
     component_id = models.IntegerField()
-    price_from = models.DateTimeField(auto_now_add=True)
+    price_from = models.DateTimeField()
     price_to = models.DateTimeField(null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
