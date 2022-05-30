@@ -12,8 +12,8 @@ def get_price(self):
 
 class Paper(models.Model):
     PAPER_TYPES = [
-        ('coated', 'powlekany'),
-        ('uncoated', 'niepowlekany')
+        ('powlekany', 'powlekany'),
+        ('niepowlekany', 'niepowlekany')
     ]
     SIZE_TYPES = [
         ('A0', 'A0'),
@@ -31,7 +31,7 @@ class Paper(models.Model):
     grammage = models.CharField(
         max_length=5, choices=GRAMMAGE_TYPES, default='150')
     paper_type = models.CharField(
-        max_length=100, choices=PAPER_TYPES, default='uncoated')
+        max_length=100, choices=PAPER_TYPES, default='niepowlekany')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
 

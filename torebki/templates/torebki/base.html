@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Pan Torebka{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'torebki/style.css' %}" />
+    <link
+      rel="icon"
+      href="{% static 'torebki/Shopping-bag-orange-icon.png' %}"
+    />
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <ul class="nav">
+      <div id="logo">
+        <li>
+          <img
+            src="{% static 'torebki/Shopping-bag-orange-icon.png' %}"
+            alt="torebka"
+          />
+        </li>
+        <li><h1>Pan Torebka</h1></li>
+      </div>
+      <li><a href="{% url 'admin:index' %}">Panel administratora</a></li>
+    </ul>
+    <div id="content">{% block content %}{% endblock %}</div>
+  </body>
+</html>

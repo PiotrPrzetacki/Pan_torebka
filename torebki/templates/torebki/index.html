@@ -1,15 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pan Torebka</title>
-    <script defer>
-      let data = JSON.parse('{{data|escapejs}}');
-    </script>
-  </head>
-  <body>
-    <h1>Konfigurator torebki</h1>
-  </body>
-</html>
+{% extends "torebki/base.html" %} {% block content %}
+<div class="bag-form">
+  <h1>Konfigurator torebki</h1>
+  <form method="POST" id="form">
+    {% csrf_token %}
+    <div id="paper-container" class="input-container">
+      <label for="paper" class="bold-label">Papier:</label>
+      <select id="paper" name="paper"></select>
+      <span id="paper-price" class="param-price"></span>
+      <div class="input-data">
+        <p>Format: <span id="paper-size"></span></p>
+        <p>Gramatura: <span id="paper-grammage"></span></p>
+        <p>Rodzaj: <span id="paper-type"></span></p>
+      </div>
+    </div>
+
+    <div id="printing-container" class="input-container">
+      <label class="bold-label">Druk</label>
+      <br />
+      <div class="input-data">
+        <label for="overprint">Nadruk:</label>
+        <select id="overprint" name="overprint"></select>
+        <span id="overprint-price" class="param-price"></span>
+        <br />
+        <label for="laminate">Laminat:</label>
+        <select id="laminate" name="laminate"></select>
+        <span id="laminate-price" class="param-price"></span>
+        <br />
+        <label for="colors">Ilość kolorów CMYK:</label>
+        <select id="colors" name="color"></select>
+        <span id="color-price" class="param-price"></span>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label for="handle-type" class="bold-label">Rodzaj uchwytu:</label>
+      <span id="handle-type-price" class="param-price"></span>
+      <div id="handle-type-options" class="input-data"></div>
+    </div>
+
+    <div class="input-container">
+      <label for="dimensions" class="bold-label">Rozmiar torebki:</label>
+      <select id="dimensions" name="dimensions">
+        <option disabled>szer. x wys. x głęb. cm</option>
+      </select>
+      <br />
+      <input type="checkbox" id="custom-dimensions-checkbox" />
+      <label for="custom-dimensions-checkbox">Własny rozmar torebki</label>
+      <br />
+      <div hidden id="custom-dimensions">
+        <input
+          type="number"
+          id="custom-width"
+          disabled
+          name="custom-width"
+          max="100"
+          min="5"
+          placeholder="szerokość"
+          required
+        />&nbsp;x
+        <input
+          type="number"
+          id="custom-height"
+          disabled
+          name="custom-height"
+          max="100"
+          min="5"
+          placeholder="wysokość"
+          required
+        />&nbsp;x
+        <input
+          type="number"
+          id="custom-depth"
+          disabled
+          name="custom-depth"
+          max="50"
+          min="2"
+          placeholder="głębokość"
+          required
+        />
+      </div>
+    </div>
+    <hr />
+    <p id="price">
+      <b>Cena za sztukę:</b>
+      <span id="price-value"></span>
+    </p>
+    <input type="submit" value="Zapisz torebkę" />
+  </form>
+</div>
+{% endblock %} 
+
+{% block head %}
+{% load static %}
+<script>
+  let data = JSON.parse('{{data|escapejs}}');
+</script>
+<script defer src="{% static 'torebki/script.js' %}"></script>
+{% endblock %}

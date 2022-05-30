@@ -18,7 +18,7 @@ class BagAdmin(admin.ModelAdmin):
 
     @admin.display(description="Price")
     def price(self, obj):
-        return obj.get_price()
+        return f'{obj.get_price()} zł'
 
 
 class PaperAdmin(admin.ModelAdmin):

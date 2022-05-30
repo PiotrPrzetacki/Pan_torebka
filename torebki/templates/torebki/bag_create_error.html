@@ -1,0 +1,9 @@
+{% extends "torebki/base.html" %} {% block content %}
+<div class="message-container">
+  <div class="alert alert-error">
+    <h2>Podczas dodawania torebki wystąpił błąd</h2>
+    <p>Upewnij się, że wszystkie dane są poprawne</p>
+  </div>
+  <a href="{% url 'index' %}">Powrót</a>
+</div>
+{% endblock %}

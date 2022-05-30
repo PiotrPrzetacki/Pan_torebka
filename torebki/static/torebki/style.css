@@ -1,0 +1,161 @@
+body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#content{
+    margin: 8px;
+}
+
+.nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    background-color: #5DBDDB;
+    color: white;
+}
+#logo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
+}
+
+.bag-form{
+    max-width: 800px;
+    min-width: 380px;
+    width: 45%;
+    background-color: #f5f5f598;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 12px 52px;
+}
+
+.nav a{
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px;
+    text-decoration: none;
+    color: #0F7596;
+}
+.nav a:hover{
+    background-color: #f5f5f5;
+    text-decoration: underline;
+}
+
+.alert{
+    background-color: #E1F8FF;
+    border: 1px solid #1DAEFF;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 12px 16px;
+    color: #0075c9;
+}
+.alert h2{
+    color: #0066B0;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 4px 0;
+}
+.alert p{
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.alert-error{
+    border-color: #FF381D;
+    background-color: #FFECE1;
+    color: #C73507;
+}
+.alert-error h2{
+    color: #B00000;
+}
+
+.alert-success{
+    border-color: #19C754;
+    background-color: #E1FFEA;
+    color: #006B04;
+}
+.alert-success h2{
+    color: #018555;
+}
+
+.message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px;
+    gap: 40px;
+}
+.message-container a{
+    background-color: #f5f5f5;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    padding: 5px 8px;
+    text-decoration: none;
+    color: #0686b1;
+    font-weight: 600;
+}
+.message-container a:hover{
+    background-color: #dddddd;
+}
+
+.input-data{
+    margin: 2px 0 0 12px;
+}
+.input-data>*{
+    margin: 2px 0;
+}
+
+input[type='submit']{
+    transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+    background-color: #f3f3f3;
+    border: 1px solid #16a328;
+    border-radius: 4px;
+    padding: 5px 8px;
+    color: #16a328;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 5px;
+}
+input[type='submit']:hover{
+    background-color: #16a328;
+    border-color: #0a7a0e;
+    color: #fff;
+}
+
+input[type='radio']{
+    margin-right: 4px;
+}
+
+input[type='number']{
+    width: 80px;
+}
+
+select{
+    min-width: 50px;
+}
+
+.input-container{
+    margin: 20px 0;
+}
+
+.bold-label{
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.param-price{
+    margin-left: 12px;
+    color: #023300;
+}
