@@ -1,7 +1,12 @@
 from django.contrib import admin
 from .models import *
+from django.utils.translation import gettext_lazy as _
+
 
 # Register your models here.
+
+admin.site.site_header = 'Pan Torebka administracja'
+admin.site.index_title = 'Administracja torebkami'
 
 
 class BagAdmin(admin.ModelAdmin):
@@ -12,11 +17,11 @@ class BagAdmin(admin.ModelAdmin):
                    'handle_type', 'dimensions')
     search_fields = ('paper__size', 'paper__paper_type', 'paper__grammage')
 
-    @admin.display(description="Is available", boolean=True)
+    @admin.display(description=_('is available'), boolean=True)
     def is_available(self, obj):
         return obj.is_available()
 
-    @admin.display(description="Price")
+    @admin.display(description=_('price'))
     def price(self, obj):
         return f'{obj.get_price()} zł'
 
